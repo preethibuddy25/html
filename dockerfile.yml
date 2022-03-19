@@ -1,7 +1,5 @@
-FROM ubuntu
-RUN sudo apt update
-RUN sudo apt install -y php-redis
-RUN sudo systemctl restart apache2
+FROM php:7.4-apache-buster
+RUN apt update && apt -y install php-redis && sudo systemctl restart apache2
 COPY . /var/www/html
 WORKDIR /var/www/html
 CMD [ "php", "./test.php" ]
