@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+        app: webapp
+        tier: frontend
+  template:
+    metadata:
+      labels:
+        app: webapp
+        tier: frontend
+    spec:
+      containers:
+      - name: php-redis
+        image: webapp
+        env:
+        - name: GET_HOSTS_FROM
+          value: "dns"
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        ports:
+        - containerPort: 80
+# to scale the application we can use below command or change in deployment file 
+#kubectl scale deployment frontend --replicas=5
+# or here we can setup cloud watch to scale out and cale in
+# automatically 
