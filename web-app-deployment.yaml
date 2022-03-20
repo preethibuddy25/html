@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: php-redis
-        image: webapp
+        image: webapp:v1 #name from the build 
         env:
         - name: GET_HOSTS_FROM
           value: "dns"
