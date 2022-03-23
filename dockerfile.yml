@@ -1,5 +1,12 @@
-FROM php:7.4-apache-buster
-RUN apt update && apt -y install php-redis && sudo systemctl restart apache2
+FROM php:7.2-apache
+RUN apt update && sudo systemctl restart apache2
+RUN curl -L -o /tmp/redis.tar.gz https://github.com/phpredis/phpredis/archive/2.2.7.tar.gz \
+    && tar xfz /tmp/redis.tar.gz \
+    && rm -r /tmp/redis.tar.gz \
+    && mv phpredis-2.2.7 /usr/src/php/ext/redis \
+    && docker-php-ext-install redis
 COPY . /var/www/html
 WORKDIR /var/www/html
+EXPOSE 80
+EXPOSE 6379
 CMD [ "php", "./test.php" ]
