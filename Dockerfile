@@ -43,8 +43,6 @@ ADD apache-config.conf /etc/apache2/sites-enabled/000-default.conf
 # Expose apache.
 EXPOSE 8080
 EXPOSE 6379
-COPY . /var/www/html
-WORKDIR /var/www/html
 # By default start up apache in the foreground, override with /bin/bash for interative.
 CMD /usr/sbin/apache2ctl -D FOREGROUND
 
