@@ -42,7 +42,6 @@ ADD apache-config.conf /etc/apache2/sites-enabled/000-default.conf
 
 # Expose apache.
 EXPOSE 80
-EXPOSE 6379
 # By default start up apache in the foreground, override with /bin/bash for interative.
 CMD /usr/sbin/apache2ctl -D FOREGROUND
 
