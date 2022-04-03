@@ -3,8 +3,10 @@ services:
  php:
    build:
      context: .
-     dockerfile: .
+     dockerfile: Dockerfile
    container_name: php-app
+   ports: 
+    - "80:8080" 
    links:
     - redis
  redis:
